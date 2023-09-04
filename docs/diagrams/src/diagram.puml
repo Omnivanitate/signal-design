@@ -1,0 +1,70 @@
+@startuml "Structure_signal-design"
+
+class Axis {
+    size: int
+    sample: float
+    start: float
+    end: Optional[float]
+}
+
+class Relation {
+    y: np.ndarray
+    x: Axis
+    size: int
+    start: float
+    end: float
+    sample: float
+    array: np.ndarray
+    Tuple[np.ndarray, np.ndarray] get_data()
+    Number max()
+    Number min()
+    float get_norm()
+    Relation select_data(start: float, end: float)
+    Relation exp()
+    Relation diff()
+    Relation integrate()
+    Relation interpolate_extrapolate(new_x: ArrayAxis)
+    Relation shift(x_shift: float)
+    Tuple[Relation, Relation] equalize(r1: Relation, r2: Relation)
+    Relation correlate(cls: Relation, r1: Relation, r2: Relation)
+    Relation convolve(cls: Relation, r1: Relation, r2: Relation)
+    Relation math_operations(r1: Relation, r2: Relation)
+
+}
+
+class Signal {
+_spectrum: Spectrum
+time: Axis
+amplitude: np.ndarray
+
+Spectrum get_spectrum(recalculate=False, is_start_zero=False)
+Relation get_amplitude_spectrum(recalculate=False, is_start_zero=False)
+Relation get_phase_spectrum(recalculate=False, is_start_zero=False)
+Signal get_reverse_signal(**params)
+Signal add_phase(other: Relation)
+Signal sub_phase(other: Relation)
+
+}
+
+class Spectrum {
+_signal: Signal
+frequency: Axis
+amplitude: np.ndarray
+
+Signal get_signal(recalculate=False, start_time: float = None)
+Relation get_amplitude_spectrum()
+Relation get_phase_spectrum()
+Spectrum get_reverse_filter(**params)
+Spectrum add_phase(other: Relation)
+Spectrum sub_phase(other: Relation)
+Spectrum get_from_amplitude_phase(cls: Spectrum, r1: Relation, r2: Relation)
+}
+
+Relation "1" o-- "1" Axis
+Signal --|> Relation
+Spectrum --|> Relation
+
+Signal "1" o-- "1" Spectrum
+Spectrum "1" o-- "1" Signal
+
+@enduml
