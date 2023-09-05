@@ -5,6 +5,8 @@ description = "The project for creation and analysis signals."
 authors = ["Omnivanitate <serebraykov.vs@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/Omnivanitate/signal-design"
+documentation = "https://signal-design.readthedocs.io"
 packages = [{include = "signal_design"}]
 
 [tool.poetry.dependencies]
