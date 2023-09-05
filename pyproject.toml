@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "signal-design"
-version = "0.0.0"
+version = "0.1.0"
 description = "The project for creation and analysis signals."
 authors = ["Omnivanitate <serebraykov.vs@gmail.com>"]
 license = "MIT"
